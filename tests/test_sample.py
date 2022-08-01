@@ -2,11 +2,11 @@ import os
 
 from ofxstatement.ui import UI
 
-from ofxstatement.plugins.sample import SamplePlugin
+from ofxstatement.plugins.ee_seb import SebParser
 
 
 def test_sample() -> None:
-    plugin = SamplePlugin(UI(), {})
+    plugin = SebParser(UI(), {})
     here = os.path.dirname(__file__)
     sample_filename = os.path.join(here, "sample-statement.csv")
 
