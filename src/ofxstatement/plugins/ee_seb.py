@@ -4,6 +4,7 @@ from ofxstatement.plugin import Plugin
 from ofxstatement.parser import StatementParser
 from ofxstatement.parser import CsvStatementParser
 from ofxstatement.statement import Statement, StatementLine
+import csv
 
 
 class EstoniaSebPlugin(Plugin):
@@ -12,25 +13,29 @@ class EstoniaSebPlugin(Plugin):
 
 
 class SebParser(CsvStatementParser):
+
+    # 0 Account
+    # 1 Valuta
+    # 2 Buchungstext
+    # 3 Kontonummer
+    # 4 Auftraggeber / Empfänger
+    # 5 Konto/IBAN
+    # 6 BLZ/BIC
+    # 7 Verwendungszweck
+    # 8 Betrag in EUR
+
+    mappings = {"payee": 0, "date": 2, "id": 10, "amount": 8}
+    date_format = "%d.%m.%Y"
+
     def __init__(self, fin: TextIO) -> None:
         super().__init__(fin)
 
-    def parse(self) -> Statement:
-        stmt = super().parse()
-        """Main entry point for parsers
-
-        super() implementation will call to split_records and parse_record to
-        process the file.
-        """
-
-        print(stmt)
-
-        return stmt
-
     def split_records(self) -> Iterable[str]:
-        """Return iterable object consisting of a line per transaction"""
-        return []
+        return csv.reader(self.fin, delimiter=';')
 
     def parse_record(self, line: str) -> StatementLine:
-        """Parse given transaction line and return StatementLine object"""
-        return StatementLine("sd")
+        if self.cur_record < 2:
+            return None
+        sl = super(SebParser, self).parse_record(line)
+        print(sl)
+        return sl
