@@ -36,6 +36,11 @@ class SebParser(CsvStatementParser):
     def parse_record(self, line: str) -> StatementLine:
         if self.cur_record < 2:
             return None
+
+        print(line[8])
+        line[8] = line[8] if line[7]=="C" else "-"+line[8]
+        
         sl = super(SebParser, self).parse_record(line)
-        print(sl)
+        sl.memo = "Еда"
+        print(sl.amount)
         return sl
