@@ -81,6 +81,10 @@ ofxstatement is still able to load your plugin, run::
 
 You should be able to see your plugin listed.
 
+### Runnining unit tests
+1. `pip install -e .`
+2. `pytest`
+
 After you are done
 ==================
 

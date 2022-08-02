@@ -24,7 +24,7 @@ class SebParser(CsvStatementParser):
         """
 
         print(stmt)
-        
+
         return stmt
 
     def split_records(self) -> Iterable[str]:
