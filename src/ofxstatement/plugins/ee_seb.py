@@ -31,5 +31,4 @@ class SebParser(CsvStatementParser):
         line[8] = line[8] if line[7]=="C" else "-"+line[8]
         
         sl = super(SebParser, self).parse_record(line)
-        print(sl.amount)
         return sl
