@@ -14,7 +14,7 @@ setup(
     version=version,
     author="Sergei Mihhailov",
     author_email="me@rsi2m.dev",
-    url="https://github.com/rsi2m/",
+    url="https://github.com/rsi2m/ofxstatement-ee-seb",
     description=("Plugin for estonian SEB bank"),
     long_description=long_description,
     license="GPLv3",

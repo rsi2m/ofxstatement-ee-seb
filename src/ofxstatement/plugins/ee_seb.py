@@ -14,16 +14,6 @@ class EstoniaSebPlugin(Plugin):
 
 class SebParser(CsvStatementParser):
 
-    # 0 Account
-    # 1 Valuta
-    # 2 Buchungstext
-    # 3 Kontonummer
-    # 4 Auftraggeber / Empfänger
-    # 5 Konto/IBAN
-    # 6 BLZ/BIC
-    # 7 Verwendungszweck
-    # 8 Betrag in EUR
-
     mappings = {"payee": 4, "date": 2, "id": 10, "amount": 8, "memo":11}
     date_format = "%d.%m.%Y"
 
