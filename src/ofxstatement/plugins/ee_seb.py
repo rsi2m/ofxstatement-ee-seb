@@ -24,7 +24,7 @@ class SebParser(CsvStatementParser):
     # 7 Verwendungszweck
     # 8 Betrag in EUR
 
-    mappings = {"payee": 0, "date": 2, "id": 10, "amount": 8}
+    mappings = {"payee": 4, "date": 2, "id": 10, "amount": 8, "memo":11}
     date_format = "%d.%m.%Y"
 
     def __init__(self, fin: TextIO) -> None:
@@ -41,6 +41,5 @@ class SebParser(CsvStatementParser):
         line[8] = line[8] if line[7]=="C" else "-"+line[8]
         
         sl = super(SebParser, self).parse_record(line)
-        sl.memo = "Еда"
         print(sl.amount)
         return sl
